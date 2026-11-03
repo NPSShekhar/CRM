@@ -1,0 +1,37 @@
+{
+  "name": "enterprise-crm",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Production-Ready CRM & Customer Support Ticketing Application",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently -n \"backend,frontend\" -c \"blue,green\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "start": "concurrently -n \"backend,frontend\" -c \"blue,green\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "build": "npm run build --prefix backend && npm run build --prefix frontend",
+    "db:push": "npm run prisma:db:push --prefix backend",
+    "db:seed": "npm run prisma:seed --prefix backend",
+    "test": "npm run test --prefix backend"
+  },
+  "keywords": [
+    "crm",
+    "ticketing",
+    "support",
+    "email-integration",
+    "customer-service"
+  ],
+  "author": "Antigravity",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "dependencies": {
+    "imapflow": "^2.10.0"
+  }
+}

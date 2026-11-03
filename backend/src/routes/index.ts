@@ -1,0 +1,41 @@
+import { Router } from 'express';
+import authRoutes from './auth.routes.js';
+import userRoutes from './user.routes.js';
+import customerRoutes from './customer.routes.js';
+import applicationRoutes from './application.routes.js';
+import ticketRoutes from './ticket.routes.js';
+import agentRoutes from './agent.routes.js';
+import teamRoutes from './team.routes.js';
+import emailRoutes from './email.routes.js';
+import notificationRoutes from './notification.routes.js';
+import reportRoutes from './report.routes.js';
+import settingsRoutes from './settings.routes.js';
+import webhookRoutes from './webhook.routes.js';
+import integrationRoutes from './integration.routes.js';
+import membershipRoutes from './membership.routes.js';
+import supportHoursRoutes from './supportHours.routes.js';
+import billingRoutes from './billing.routes.js';
+import { EmailController } from '../controllers/email.controller.js';
+import { authenticate } from '../middleware/auth.js';
+
+const apiRouter = Router();
+
+apiRouter.use('/auth', authRoutes);
+apiRouter.use('/users', userRoutes);
+apiRouter.use('/customers', customerRoutes);
+apiRouter.use('/applications', applicationRoutes);
+apiRouter.use('/tickets', ticketRoutes);
+apiRouter.use('/agents', agentRoutes);
+apiRouter.use('/teams', teamRoutes);
+apiRouter.use('/email', emailRoutes);
+apiRouter.use('/notifications', notificationRoutes);
+apiRouter.use('/reports', reportRoutes);
+apiRouter.use('/settings', settingsRoutes);
+apiRouter.use('/webhooks', webhookRoutes);
+apiRouter.use('/integrations', integrationRoutes);
+apiRouter.use('/memberships', membershipRoutes);
+apiRouter.use('/support-hours', supportHoursRoutes);
+apiRouter.use('/billing', billingRoutes);
+apiRouter.post('/test/email', authenticate, EmailController.testEmail);
+
+export default apiRouter;
